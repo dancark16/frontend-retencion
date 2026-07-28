@@ -1,0 +1,46 @@
+<nav class="nb-top">
+    <button class="nb-hamburger" (click)="toggle()">
+        <mat-icon>{{ isMobileOpen() ? 'close' : 'menu' }}</mat-icon>
+    </button>
+    <div class="nb-brand">
+        <mat-icon class="nb-logo">receipt_long</mat-icon>
+        <span class="nb-name">SRI Retenciones</span>
+    </div>
+</nav>
+
+@if (isMobileOpen()) {
+<div class="sb-overlay" (click)="toggle()"></div>
+}
+
+<aside class="sb" [class.sb-open]="isMobileOpen()">
+    <div class="sb-brand">
+        <mat-icon class="sb-brand-icon">receipt_long</mat-icon>
+        <div>
+            <div class="sb-title">Retenciones</div>
+            <div class="sb-sub">Sistema SRI · Ecuador</div>
+        </div>
+    </div>
+
+    <div class="sb-stripe">
+        <span class="s-red"></span>
+        <span class="s-yellow"></span>
+        <span class="s-blue"></span>
+    </div>
+
+    <nav class="sb-nav">
+        <a class="sb-item" routerLink="/dashboard" routerLinkActive="sb-active" (click)="isMobileOpen.set(false)">
+            <mat-icon>dashboard</mat-icon>
+            <span>Dashboard</span>
+        </a>
+        <a class="sb-item" routerLink="/pendientes" routerLinkActive="sb-active" (click)="isMobileOpen.set(false)">
+            <mat-icon>pending_actions</mat-icon>
+            <span>Pendientes</span>
+        </a>
+        <a class="sb-item" routerLink="/historial" routerLinkActive="sb-active" (click)="isMobileOpen.set(false)">
+            <mat-icon>history</mat-icon>
+            <span>Historial</span>
+        </a>
+    </nav>
+
+    <div class="sb-footer">Ecuador · SRI</div>
+</aside>

@@ -1,0 +1,65 @@
+<div class="std-page fade-in">
+    <div class="std-header">
+        <div class="std-header-icon"><mat-icon>pending_actions</mat-icon></div>
+        <div>
+            <h1 class="std-title">Retenciones Pendientes</h1>
+            <p class="std-subtitle">Documentos por procesar en Monica 11</p>
+        </div>
+    </div>
+
+    <div class="std-body">
+        <div class="table-container">
+            <table mat-table [dataSource]="retenciones" class="full-width">
+
+                <ng-container matColumnDef="fecha">
+                    <th mat-header-cell *matHeaderCellDef>Fecha factura</th>
+                    <td mat-cell *matCellDef="let r">{{ r.invoice_date }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="cliente">
+                    <th mat-header-cell *matHeaderCellDef>Cliente</th>
+                    <td mat-cell *matCellDef="let r">{{ r.client_name }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="factura">
+                    <th mat-header-cell *matHeaderCellDef>Factura</th>
+                    <td mat-cell *matCellDef="let r">{{ r.invoice_sequential }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="retencion">
+                    <th mat-header-cell *matHeaderCellDef>No. Retención</th>
+                    <td mat-cell *matCellDef="let r">{{ r.ret_number }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="estado">
+                    <th mat-header-cell *matHeaderCellDef>Estado</th>
+                    <td mat-cell *matCellDef="let r">
+                        <span class="badge badge-{{ r.status }}">{{ r.status }}</span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="accion">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let r">
+                        <button mat-icon-button (click)="router.navigate(['/detalle', r.id])">
+                            <mat-icon>chevron_right</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="eliminar(r.id, $event)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="cols"></tr>
+                <tr mat-row *matRowDef="let r; columns: cols" class="clickable-row"
+                    (click)="router.navigate(['/detalle', r.id])"></tr>
+            </table>
+
+            <div class="empty-state" *ngIf="!retenciones.length">
+                <mat-icon>inbox</mat-icon>
+                <p><strong>Sin retenciones pendientes</strong></p>
+                <p>Sube un PDF desde el Dashboard para comenzar.</p>
+            </div>
+        </div>
+    </div>
+</div>

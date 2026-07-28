@@ -1,0 +1,51 @@
+<div class="std-page fade-in">
+    <div class="std-header">
+        <div class="std-header-icon"><mat-icon>receipt_long</mat-icon></div>
+        <div>
+            <h1 class="std-title">Dashboard</h1>
+            <p class="std-subtitle">Resumen de retenciones SRI</p>
+        </div>
+        <div class="std-header-actions">
+            <input #fileInput type="file" accept=".pdf" hidden (change)="onFile(fileInput.files)">
+            <button class="btn-outline" (click)="fileInput.click()">
+                <mat-icon>upload_file</mat-icon> Subir PDF
+            </button>
+            <button class="btn-secondary" (click)="sincronizar()" [disabled]="syncing">
+                <mat-icon>sync</mat-icon> {{ syncing ? 'Sincronizando...' : 'Sincronizar SRI' }}
+            </button>
+        </div>
+    </div>
+
+    <div class="std-body">
+        <div class="stats-grid">
+            <div class="stat-card stat-blue">
+                <div class="stat-number">{{ pendientes }}</div>
+                <div class="stat-label">Pendientes</div>
+                <mat-icon class="stat-icon">pending_actions</mat-icon>
+            </div>
+            <div class="stat-card stat-green">
+                <div class="stat-number">{{ completadas }}</div>
+                <div class="stat-label">Completadas</div>
+                <mat-icon class="stat-icon">check_circle</mat-icon>
+            </div>
+            <div class="stat-card stat-red">
+                <div class="stat-number">{{ errores }}</div>
+                <div class="stat-label">Con error</div>
+                <mat-icon class="stat-icon">error</mat-icon>
+            </div>
+        </div>
+
+        <div class="action-cards">
+            <div class="action-card" (click)="router.navigate(['/pendientes'])">
+                <mat-icon>pending_actions</mat-icon>
+                <span>Ver pendientes</span>
+                <mat-icon class="arrow">chevron_right</mat-icon>
+            </div>
+            <div class="action-card" (click)="router.navigate(['/historial'])">
+                <mat-icon>history</mat-icon>
+                <span>Historial completo</span>
+                <mat-icon class="arrow">chevron_right</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>

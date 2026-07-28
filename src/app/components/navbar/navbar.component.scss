@@ -1,0 +1,203 @@
+$primary: #003da5;
+$primary-dark: #002880;
+$primary-darker: #001a5c;
+$secondary: #e31b23;
+$active-bg: rgba(255, 255, 255, .12);
+$active-text: #ffd100;
+
+/* TOP BAR */
+.nb-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1.25rem;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .2);
+}
+
+.nb-hamburger {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: .25rem;
+    border-radius: 8px;
+    transition: background .15s;
+
+    &:hover {
+        background: rgba(255, 255, 255, .12);
+    }
+}
+
+.nb-brand {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+}
+
+.nb-logo {
+    color: #ffd100 !important;
+    font-size: 26px !important;
+    width: 26px !important;
+    height: 26px !important;
+}
+
+.nb-name {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: .01em;
+}
+
+@media (min-width: 1024px) {
+    .nb-hamburger {
+        display: none;
+    }
+}
+
+/* OVERLAY */
+.sb-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
+    z-index: 89;
+    backdrop-filter: blur(2px);
+}
+
+/* SIDEBAR */
+.sb {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    bottom: 0;
+    width: 16rem;
+    background: linear-gradient(180deg, $primary-dark 0%, $primary-darker 100%);
+    z-index: 90;
+    transform: translateX(-100%);
+    transition: transform .28s ease;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, .18);
+
+    &.sb-open {
+        transform: translateX(0);
+    }
+
+    @media (min-width: 1024px) {
+        transform: translateX(0);
+    }
+}
+
+/* BRAND AREA */
+.sb-brand {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: 1.25rem 1.25rem .75rem;
+}
+
+.sb-brand-icon {
+    color: #ffd100 !important;
+    font-size: 2rem !important;
+    width: 2rem !important;
+    height: 2rem !important;
+    flex-shrink: 0;
+}
+
+.sb-title {
+    color: #fff;
+    font-weight: 700;
+    font-size: .95rem;
+}
+
+.sb-sub {
+    color: rgba(255, 255, 255, .5);
+    font-size: .7rem;
+    margin-top: .1rem;
+}
+
+/* ECUADOR STRIPE */
+.sb-stripe {
+    display: flex;
+    height: 3px;
+    margin: .5rem 1.25rem 1rem;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.s-red {
+    flex: 1;
+    background: #e31b23;
+}
+
+.s-yellow {
+    flex: 1;
+    background: #ffd100;
+}
+
+.s-blue {
+    flex: 1;
+    background: #60a5fa;
+}
+
+/* NAV ITEMS */
+.sb-nav {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    padding: 0 .75rem;
+    flex: 1;
+}
+
+.sb-item {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .7rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, .72);
+    font-size: .9rem;
+    font-weight: 500;
+    transition: all .18s;
+
+    mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        background: $active-bg;
+        color: #fff;
+    }
+
+    &.sb-active {
+        background: $active-bg;
+        color: $active-text;
+        font-weight: 700;
+
+        mat-icon {
+            color: $active-text;
+        }
+    }
+}
+
+/* FOOTER */
+.sb-footer {
+    padding: 1rem 1.25rem;
+    font-size: .7rem;
+    color: rgba(255, 255, 255, .3);
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    text-align: center;
+}
